@@ -1,9 +1,9 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using lab3Selenium.BusinessObject;
 using lab3Selenium.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using TestConfiguration = lab3Selenium.Configuration.TestConfiguration;
 
 namespace lab3Selenium
 {
@@ -17,16 +17,28 @@ namespace lab3Selenium
 
         private PasswordPageBO PasswordPage { get; set; }
 
+        private InboxPageBO InboxPage { get; set; }
+
+        private ComposeMailPageBO ComposeMailPage { get; set; }
+
+        private SentMailPageBO SentMailPage { get; set; }
+
+        private OpenedMailPageBO OpenedMailPage { get; set; }
+
         [TestInitialize]
         public void SetupTest()
         {
             LoginPage = new LoginPageBO(Driver);
             PasswordPage = new PasswordPageBO(Driver);
+            InboxPage = new InboxPageBO(Driver);
+            ComposeMailPage = new ComposeMailPageBO(Driver);
+            SentMailPage = new SentMailPageBO(Driver);
+            OpenedMailPage = new OpenedMailPageBO(Driver);
 
-            LoginPage.Navigate(Configuration.TestConfiguration.Url);
-            LoginPage.EnterEmail(Configuration.TestConfiguration.Email);
+            LoginPage.Navigate(TestConfiguration.Url);
+            LoginPage.EnterEmail(TestConfiguration.Email);
             LoginPage.ClickNextButton();
-            PasswordPage.EnterPassword(Configuration.TestConfiguration.Password);
+            PasswordPage.EnterPassword(TestConfiguration.Password);
             PasswordPage.ClickNextButton();
         }
 
@@ -40,6 +52,18 @@ namespace lab3Selenium
         [TestMethod]
         public void TestMethod1()
         {
+            InboxPage.ClickCompose();
+            ComposeMailPage.InputToField(TestConfiguration.Email);
+            ComposeMailPage.InputSubjectField(TestConfiguration.MailSubject);
+            ComposeMailPage.InputMessageField(TestConfiguration.Message);
+            ComposeMailPage.ClickSendButton();
+            InboxPage.GoToSendFolder();
+            SentMailPage.OpenMail();
+
+            Assert.AreEqual(OpenedMailPage.GetSubjectText(), TestConfiguration.MailSubject);
+            Assert.AreEqual(OpenedMailPage.GetMessageText(), TestConfiguration.Message);
+
+            OpenedMailPage.DeleteMail();
         }
 
         [TestMethod]
@@ -55,6 +79,11 @@ namespace lab3Selenium
         [TestMethod]
         public void TestMethod4()
         {
+        }
+
+        private void InitializePages()
+        {
+
         }
     }
 }
