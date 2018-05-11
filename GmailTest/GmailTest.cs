@@ -3,12 +3,12 @@ using lab3Selenium.BusinessObject;
 using lab3Selenium.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System.Threading.Tasks;
 using TestConfiguration = lab3Selenium.Configuration.TestConfiguration;
 
 namespace lab3Selenium
 {
     [TestClass]
-
     public class GmailTest
     {
         private IWebDriver Driver { get; set; } = AutofacConfiguration.GetContainer().Resolve<IWebDriver>();
@@ -57,7 +57,7 @@ namespace lab3Selenium
 
         [TestMethod]
         [Description("Verifies if sent message is in 'Sent mail' folder")]
-        public void TestMethod1()
+        public async Task TestMethod1()
         {
             EnterPage.ClickCompose();
             ComposeMailPage.InputToField(TestConfiguration.Email);
