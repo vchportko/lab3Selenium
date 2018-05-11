@@ -1,24 +1,25 @@
-﻿using lab3SeleniumInfrastracture.PageObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using lab3Selenium.PageObject;
+using OpenQA.Selenium;
 
-namespace lab3SeleniumInfrastracture.BusinessObject
+namespace lab3Selenium.BusinessObject
 {
     public class LoginPageBO
     {
         private LoginPage LoginPage;
 
-        LoginPageBO()
+        public LoginPageBO(IWebDriver driver)
         {
-            LoginPage = new LoginPage();
+            LoginPage = new LoginPage(driver);
         }
 
-        public void EnterEmail()
+        public void  Navigate(string url)
         {
-            LoginPage.LoginField.SendKeys("veronikashportko@gmail.com");
+            LoginPage.Driver.Navigate().GoToUrl(url);
+        }
+
+        public void EnterEmail(string email)
+        {
+            LoginPage.WaitAndInput(LoginPage.LoginField, email);
         }
 
         public void ClickNextButton()

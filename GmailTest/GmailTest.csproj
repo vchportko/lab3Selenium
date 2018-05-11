@@ -68,8 +68,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\lab3SeleniumInfrastracture\lab3Selenium.csproj">
-      <Project>{f323315a-51cd-4334-9b41-781062fb2719}</Project>
+    <ProjectReference Include="..\lab3Selenium\lab3Selenium.csproj">
+      <Project>{9fca248c-bc78-4f8d-91f5-140725af22e0}</Project>
       <Name>lab3Selenium</Name>
     </ProjectReference>
   </ItemGroup>

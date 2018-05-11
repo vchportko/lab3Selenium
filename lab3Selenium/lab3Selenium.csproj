@@ -38,6 +38,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -45,6 +49,7 @@
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="WebDriver, Version=3.12.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -55,25 +60,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObject\BinPageBO.cs" />
+    <Compile Include="BusinessObject\ComposeMailPageBO.cs" />
+    <Compile Include="BusinessObject\DraftMailPageBO.cs" />
+    <Compile Include="BusinessObject\EnterPageBO.cs" />
+    <Compile Include="BusinessObject\ImportantPageBO.cs" />
+    <Compile Include="BusinessObject\InboxPageBO.cs" />
     <Compile Include="BusinessObject\LoginPageBO.cs" />
-    <Compile Include="MainTest.cs" />
+    <Compile Include="BusinessObject\OpenedMailPageBO.cs" />
+    <Compile Include="BusinessObject\PasswordPageBO.cs" />
+    <Compile Include="BusinessObject\SentMailPageBO.cs" />
+    <Compile Include="Configuration\AutofacConfiguration.cs" />
+    <Compile Include="Configuration\TestConfiguration.cs" />
     <Compile Include="PageObject\BasePage.cs" />
+    <Compile Include="PageObject\BinPage.cs" />
+    <Compile Include="PageObject\ComposeMailPage.cs" />
+    <Compile Include="PageObject\DraftMail.cs" />
+    <Compile Include="PageObject\EnterPage.cs" />
+    <Compile Include="PageObject\ImportantPage.cs" />
+    <Compile Include="PageObject\InboxPage.cs" />
     <Compile Include="PageObject\LoginPage.cs" />
+    <Compile Include="PageObject\OpenedMailPage.cs" />
     <Compile Include="PageObject\PasswordPage.cs" />
+    <Compile Include="PageObject\SentMailPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\lab3SeleniumInfrastracture\lab3SeleniumInfrastracture.csproj">
-      <Project>{f323315a-51cd-4334-9b41-781062fb2719}</Project>
-      <Name>lab3SeleniumInfrastracture</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -2,14 +2,19 @@
 using OpenQA.Selenium.Support.PageObjects;
 
 
-namespace lab3SeleniumInfrastracture.PageObject
+namespace lab3Selenium.PageObject
 {
-    public class LoginPage
+    public class PasswordPage: BasePage
     {
-        [FindsBy(How = How.Id, Using ="identifierId")]
-        public IWebElement LoginField { get; }
+        [FindsBy(How = How.Name, Using ="password")]
+        public IWebElement PasswordField { get; private set; }
 
-        [FindsBy(How = How.Id, Using = "identifierNext")]
-        public IWebElement NextButton { get; }
+        [FindsBy(How = How.Id, Using = "passwordNext")]
+        public IWebElement NextButton { get; private set; }
+
+        public PasswordPage(IWebDriver driver): base(driver)
+        {
+
+        }
     }
 }
